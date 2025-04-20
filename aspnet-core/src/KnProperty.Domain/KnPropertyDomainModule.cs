@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using KnProperty.MultiTenancy;
 using Volo.Abp.AuditLogging;
@@ -14,6 +14,7 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.OpenIddict;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using ProductManagement;
 
 namespace KnProperty;
 
@@ -30,7 +31,8 @@ namespace KnProperty;
     typeof(AbpTenantManagementDomainModule),
     typeof(AbpEmailingModule)
 )]
-public class KnPropertyDomainModule : AbpModule
+[DependsOn(typeof(ProductManagementDomainModule))]
+    public class KnPropertyDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

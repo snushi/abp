@@ -18,6 +18,9 @@ export const environment = {
     requireHttps: true,
   },
   apis: {
+    ProductManagement: {
+      rootNamespace: 'ProductManagement',
+    },
     default: {
       url: 'https://localhost:44380',
       rootNamespace: 'KnProperty',

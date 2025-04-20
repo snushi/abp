@@ -1,4 +1,4 @@
-﻿using Localization.Resources.AbpUi;
+using Localization.Resources.AbpUi;
 using KnProperty.Localization;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
@@ -8,6 +8,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.HttpApi;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using ProductManagement;
 
 namespace KnProperty;
 
@@ -20,7 +21,8 @@ namespace KnProperty;
     typeof(AbpFeatureManagementHttpApiModule),
     typeof(AbpSettingManagementHttpApiModule)
     )]
-public class KnPropertyHttpApiModule : AbpModule
+[DependsOn(typeof(ProductManagementHttpApiModule))]
+    public class KnPropertyHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

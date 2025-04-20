@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KnProperty.Application.Contracts\KnProperty.Application.Contracts.csproj" />
-  </ItemGroup>
+  <ProjectReference Include="..\..\modules\ProductManagement\src\ProductManagement.HttpApi\ProductManagement.HttpApi.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.HttpApi" Version="9.1.1" />

@@ -1,3 +1,4 @@
+import { ProductManagementConfigModule } from '@product-management/config';
 import { CoreModule, provideAbpCore, withOptions } from '@abp/ng.core';
 import { registerLocale } from '@abp/ng.core/locale';
 import {
@@ -24,6 +25,7 @@ import { AccountLayoutModule } from '@abp/ng.theme.lepton-x/account';
 
 @NgModule({
   imports: [
+    ProductManagementConfigModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\KnProperty.Domain\KnProperty.Domain.csproj" />
     <ProjectReference Include="..\KnProperty.Application.Contracts\KnProperty.Application.Contracts.csproj" />
-  </ItemGroup>
+  <ProjectReference Include="..\..\modules\ProductManagement\src\ProductManagement.Application\ProductManagement.Application.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.Application" Version="9.1.1" />

@@ -1,4 +1,4 @@
-﻿using KnProperty.Localization;
+using KnProperty.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -12,6 +12,7 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
+using ProductManagement;
 
 namespace KnProperty;
 
@@ -25,7 +26,8 @@ namespace KnProperty;
     typeof(AbpSettingManagementDomainSharedModule),
     typeof(AbpTenantManagementDomainSharedModule)    
     )]
-public class KnPropertyDomainSharedModule : AbpModule
+[DependsOn(typeof(ProductManagementDomainSharedModule))]
+    public class KnPropertyDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

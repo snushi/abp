@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "ProductManagement.Domain.Shared": {
+      "path": "src/ProductManagement.Domain.Shared/ProductManagement.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.Domain": {
+      "path": "src/ProductManagement.Domain/ProductManagement.Domain.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.Application.Contracts": {
+      "path": "src/ProductManagement.Application.Contracts/ProductManagement.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.Application": {
+      "path": "src/ProductManagement.Application/ProductManagement.Application.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.EntityFrameworkCore": {
+      "path": "src/ProductManagement.EntityFrameworkCore/ProductManagement.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.MongoDB": {
+      "path": "src/ProductManagement.MongoDB/ProductManagement.MongoDB.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.HttpApi": {
+      "path": "src/ProductManagement.HttpApi/ProductManagement.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.HttpApi.Client": {
+      "path": "src/ProductManagement.HttpApi.Client/ProductManagement.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.TestBase": {
+      "path": "test/ProductManagement.TestBase/ProductManagement.TestBase.abppkg",
+      "folder": "test"
+    },
+    "ProductManagement.EntityFrameworkCore.Tests": {
+      "path": "test/ProductManagement.EntityFrameworkCore.Tests/ProductManagement.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "ProductManagement.MongoDB.Tests": {
+      "path": "test/ProductManagement.MongoDB.Tests/ProductManagement.MongoDB.Tests.abppkg",
+      "folder": "test"
+    },
+    "ProductManagement.Domain.Tests": {
+      "path": "test/ProductManagement.Domain.Tests/ProductManagement.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "ProductManagement.Application.Tests": {
+      "path": "test/ProductManagement.Application.Tests/ProductManagement.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "ProductManagement.HttpApi.Host": {
+      "path": "host/ProductManagement.HttpApi.Host/ProductManagement.HttpApi.Host.abppkg",
+      "folder": "host"
+    },
+    "ProductManagement.Web": {
+      "path": "src/ProductManagement.Web/ProductManagement.Web.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/ProductManagement.HttpApi.Client.ConsoleTestApp/ProductManagement.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "ProductManagement.Web.Host": {
+      "path": "host/ProductManagement.Web.Host/ProductManagement.Web.Host.abppkg",
+      "folder": "host"
+    },
+    "ProductManagement.AuthServer": {
+      "path": "host/ProductManagement.AuthServer/ProductManagement.AuthServer.abppkg",
+      "folder": "host"
+    },
+    "ProductManagement.Host.Shared": {
+      "path": "host/ProductManagement.Host.Shared/ProductManagement.Host.Shared.abppkg",
+      "folder": "host"
+    },
+    "ProductManagement.Web.Unified": {
+      "path": "host/ProductManagement.Web.Unified/ProductManagement.Web.Unified.abppkg",
+      "folder": "host"
+    },
+    "ProductManagement.Blazor": {
+      "path": "src/ProductManagement.Blazor/ProductManagement.Blazor.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.Blazor.Host": {
+      "path": "host/ProductManagement.Blazor.Host/ProductManagement.Blazor.Host.abppkg",
+      "folder": "host"
+    },
+    "ProductManagement.Blazor.Server": {
+      "path": "src/ProductManagement.Blazor.Server/ProductManagement.Blazor.Server.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.Blazor.WebAssembly": {
+      "path": "src/ProductManagement.Blazor.WebAssembly/ProductManagement.Blazor.WebAssembly.abppkg",
+      "folder": "src"
+    },
+    "ProductManagement.Blazor.Server.Host": {
+      "path": "host/ProductManagement.Blazor.Server.Host/ProductManagement.Blazor.Server.Host.abppkg",
+      "folder": "host"
+    }
+  }
+}
