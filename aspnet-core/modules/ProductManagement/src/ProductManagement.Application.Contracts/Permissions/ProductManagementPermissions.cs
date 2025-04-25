@@ -1,13 +1,27 @@
-﻿using Volo.Abp.Reflection;
+﻿//using Volo.Abp.Reflection;
 
+//namespace ProductManagement.Permissions;
+
+//public class ProductManagementPermissions
+//{
+//    public const string GroupName = "ProductManagement";
+
+//    public static string[] GetAll()
+//    {
+//        return ReflectionHelper.GetPublicConstantsRecursively(typeof(ProductManagementPermissions));
+//    }
+//}
 namespace ProductManagement.Permissions;
 
-public class ProductManagementPermissions
+public static class ProductManagementPermissions
 {
     public const string GroupName = "ProductManagement";
 
-    public static string[] GetAll()
+    public static class Products
     {
-        return ReflectionHelper.GetPublicConstantsRecursively(typeof(ProductManagementPermissions));
+        public const string Default = GroupName + ".Products";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
     }
 }

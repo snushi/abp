@@ -1,0 +1,21 @@
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+
+//namespace ProductManagement
+//{
+//    class ProductStatus
+//    {
+//    }
+//}
+
+namespace ProductManagement.Products;
+
+public enum ProductStatus
+{
+    Active,
+    Inactive,
+    Discontinued
+}

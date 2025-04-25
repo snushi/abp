@@ -1,7 +1,27 @@
 {
+  "Permission:Products": "Products",
+  "Permission:Products.Create": "Creating new products",
+  "Permission:Products.Edit": "Editing products",
+  "Permission:Products.Delete": "Deleting products",
+  "Menu:Products": "Products",
+  "Products": "Products",
+  "ProductName": "Name",
+  "ProductDescription": "Description",
+  "ProductPrice": "Price",
+  "ProductStatus": "Status",
+  "ProductStockCount": "Stock",
+  "ProductDeletionConfirmationMessage": "Are you sure you want to delete this product: {0}?",
+  "NewProduct": "New product",
+  "Edit": "Edit",
+  "Delete": "Delete",
+  "CreateANewProduct": "Create a new product",
+  "EditProduct": "Edit product",
+  "ProductStatus:Active": "Active",
+  "ProductStatus:Inactive": "Inactive",
+  "ProductStatus:Discontinued": "Discontinued",
   "culture": "en",
   "texts": {
-    "MyAccount":  "My account",
+    "MyAccount": "My account",
     "SamplePageMessage": "A sample page for the ProductManagement module"
   }
 }
