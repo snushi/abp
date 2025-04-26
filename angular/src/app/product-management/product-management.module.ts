@@ -16,7 +16,7 @@ import { ProductComponent } from './products/product.component';
 
 @NgModule({
   declarations: [
-    ProductComponent,
+    //ProductComponent,
     // CreateProductComponent,
     // EditProductComponent
   ],

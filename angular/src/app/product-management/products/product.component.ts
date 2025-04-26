@@ -50,12 +50,23 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(product: ProductDto): void {
-    // this.confirmation.warn(
-    //   'Product deletion',
-    //   `Are you sure you want to delete the product ${product.name}?`,
-    //   { isConfirmed: () => this.confirmDeleteProduct(product.id) }
-    // );
+    this.confirmation.warn(
+      'Product deletion',
+      `Are you sure you want to delete the product ${product.name}?`
+    ).subscribe((status) => {
+      if (status === Confirmation.Status.confirm) {
+        this.confirmDeleteProduct(product.id);
+      }
+    });
   }
+
+  // deleteProduct(product: ProductDto): void {
+  //   this.confirmation.warn(
+  //     'Product deletion',
+  //     `Are you sure you want to delete the product ${product.name}?`,
+  //     { isConfirmed: () => this.confirmDeleteProduct(product.id) }
+  //   );
+  // }
 
   confirmDeleteProduct(id: string): void {
     this.productService.delete(id).subscribe(() => {
@@ -72,3 +83,35 @@ export class ProductComponent implements OnInit {
     this.loadProducts();
   }
 }
+
+// import { Component, OnInit } from '@angular/core';
+// import { ProductService } from './shared/services/product.service';
+// import { ProductDto } from './shared/models/product.model';
+// import { PagedResultDto } from '@abp/ng.core';
+// import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
+
+// @Component({
+//   selector: 'app-product',
+//   templateUrl: './product.component.html'
+//   // No standalone property at all
+// })
+// export class ProductComponent implements OnInit {
+//   products: PagedResultDto<ProductDto> = { items: [], totalCount: 0 };
+  
+//   isModalOpen = false;
+//   selectedProduct = {} as ProductDto;
+//   form: any = {};
+  
+//   filters = { filter: '' };
+  
+//   constructor(
+//     private productService: ProductService,
+//     private confirmation: ConfirmationService
+//   ) {}
+
+//   ngOnInit(): void {
+//     this.loadProducts();
+//   }
+
+//   // Rest of the component implementation...
+// }

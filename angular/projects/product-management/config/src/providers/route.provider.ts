@@ -18,5 +18,13 @@ export function configureRoutes() {
       layout: eLayoutType.application,
       order: 3,
     },
+    {
+      path: '/product-management',
+      name: 'Product Managementz',
+      iconClass: 'fas fa-box',
+      order: 4,
+      layout: eLayoutType.application,
+      //requiredPolicy: 'Products.Read'
+    },
   ]);
 }

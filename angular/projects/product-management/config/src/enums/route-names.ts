@@ -1,3 +1,3 @@
 export const enum eProductManagementRouteNames {
-  ProductManagement = 'ProductManagement',
+  ProductManagement = 'Product Management test',
 }

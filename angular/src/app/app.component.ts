@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
     <abp-dynamic-layout />
     <abp-internet-status />
   `,
+   "standalone": false,
 })
 export class AppComponent {}
