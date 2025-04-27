@@ -1,1 +1,103 @@
 <p>product works!</p>
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col col-md-6">
+          <h5 class="card-title">Products</h5>
+        </div>
+  
+        <div class="col-md-6 text-end">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="filters.filter"
+              placeholder="Search"
+            />
+            <button class="btn btn-primary" type="button" (click)="onSearch()">
+              <i class="fa fa-search"></i>
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-body">
+      <div class="mb-3 text-end">
+        <button class="btn btn-primary" (click)="createProduct()" *abpPermission="'Products.Create'">
+          <i class="fa fa-plus"></i>
+          Add New Product
+        </button>
+      </div>
+  
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Stock Count</th>
+              <th>Available</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products.items">
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.price | currency }}</td>
+              <td>{{ product.stockCount }}</td>
+              <td>{{ product.isAvailable ? 'Yes' : 'No' }}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button
+                    class="btn btn-sm btn-primary"
+                    (click)="editProduct(product)"
+                    *abpPermission="'Products.Update'"
+                  >
+                    <i class="fa fa-pencil"></i>
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-danger"
+                    (click)="deleteProduct(product)"
+                    *abpPermission="'Products.Delete'"
+                  >
+                    <i class="fa fa-trash"></i>
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="mt-2">
+        <div class="mt-2">
+            <ngb-pagination
+              [collectionSize]="products.totalCount"
+              [(page)]="currentPage"
+              [pageSize]="pageSize"
+              (pageChange)="onPageChange($event)"
+              [maxSize]="5"
+              [rotate]="true"
+              [boundaryLinks]="true"
+            ></ngb-pagination>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-create-product
+    *ngIf="!selectedProduct.id && isModalOpen"
+    (modalClose)="onModalClose()"
+  ></app-create-product>
+  
+  <app-edit-product
+    *ngIf="selectedProduct.id && isModalOpen"
+    [productId]="selectedProduct.id"
+    (modalClose)="onModalClose()"
+  ></app-edit-product>

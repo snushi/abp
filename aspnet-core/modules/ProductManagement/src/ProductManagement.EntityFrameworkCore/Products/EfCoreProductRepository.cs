@@ -32,8 +32,7 @@ public class EfCoreProductRepository
     public EfCoreProductRepository(
         IDbContextProvider<ProductManagementDbContext> dbContextProvider)
         : base(dbContextProvider)
-    {
-    }
+    { }
 
     public async Task<List<Product>> GetListAsync(
         string filterText = null,
@@ -46,11 +45,29 @@ public class EfCoreProductRepository
         int skipCount = 0,
         bool includeDetails = false)
     {
-        var query = ApplyFilter(await GetQueryableAsync(), filterText, name, minPrice, maxPrice, status);
+        //var query = ApplyFilter(await GetQueryableAsync(), filterText, name, minPrice, maxPrice, status);
 
-        query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? "name asc" : sorting);
+        if (status == null)
+        {
+            status = ProductStatus.Active;
+        }
 
-        return await query.PageBy(skipCount, maxResultCount).ToListAsync();
+        int? statusValue = null;
+        if (status != null)
+        {
+            statusValue = (int)status;//ProductStatus.Active;
+        }
+
+        var query = ApplyFilter(await GetQueryableAsync(), filterText, name, minPrice, maxPrice, statusValue);
+
+        var result = await query.Select(x => new Product(x.Id, x.Name, x.Description, x.Price, x.StockCount, ProductStatus.Active))
+            .PageBy(skipCount, maxResultCount).ToListAsync();
+
+        //query = query.OrderBy(string.IsNullOrWhiteSpace(sorting) ? "name asc" : sorting);
+
+        //return await query.PageBy(skipCount, maxResultCount).ToListAsync();
+
+        return result;
     }
 
     public async Task<long> GetCountAsync(
@@ -60,24 +77,35 @@ public class EfCoreProductRepository
         decimal? maxPrice = null,
         ProductStatus? status = null)
     {
-        var query = ApplyFilter(await GetQueryableAsync(), filterText, name, minPrice, maxPrice, status);
+        if (status == null)
+        {
+            status = ProductStatus.Active;
+        }
+
+        int? statusValue = null;
+        if (status != null)
+        {
+            statusValue = (int)status;//ProductStatus.Active;
+        }
+
+        var query = ApplyFilter(await GetQueryableAsync(), filterText, name, minPrice, maxPrice, statusValue);
 
         return await query.LongCountAsync();
     }
 
     protected virtual IQueryable<Product> ApplyFilter(
-        IQueryable<Product> query,
-        string filterText,
-        string name = null,
-        decimal? minPrice = null,
-        decimal? maxPrice = null,
-        ProductStatus? status = null)
+    IQueryable<Product> query,
+    string filterText,
+    string name = null,
+    decimal? minPrice = null,
+    decimal? maxPrice = null,
+    int? status = null)
     {
         return query
-            .WhereIf(!string.IsNullOrWhiteSpace(filterText), x => x.Name.Contains(filterText) || x.Description.Contains(filterText))
-            .WhereIf(!string.IsNullOrWhiteSpace(name), x => x.Name.Contains(name))
-            .WhereIf(minPrice.HasValue, x => x.Price >= minPrice.Value)
-            .WhereIf(maxPrice.HasValue, x => x.Price <= maxPrice.Value)
-            .WhereIf(status.HasValue, x => x.Status == status.Value);
+        .WhereIf(!string.IsNullOrWhiteSpace(filterText), x => x.Name.Contains(filterText) || x.Description.Contains(filterText))
+        .WhereIf(!string.IsNullOrWhiteSpace(name), x => x.Name.Contains(name))
+        .WhereIf(minPrice.HasValue, x => x.Price >= minPrice.Value)
+        .WhereIf(maxPrice.HasValue, x => x.Price <= maxPrice.Value)
+        .WhereIf(status.HasValue, x => (int)x.Status == status);
     }
 }

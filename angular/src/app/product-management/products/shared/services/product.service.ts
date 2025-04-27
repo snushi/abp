@@ -18,7 +18,9 @@ export class ProductService {
   ): Observable<PagedResultDto<ProductDto>> {
     return this.restService.request<void, PagedResultDto<ProductDto>>({
       method: 'GET',
-      url: '/api/app/products',
+      //url: '/api/app/products',
+      //url: '/api/product-management/products',
+      url: '/api/product-management/products',
       params: {
         skipCount: input.skipCount,
         maxResultCount: input.maxResultCount,
@@ -32,12 +34,14 @@ export class ProductService {
   ): Observable<PagedResultDto<ProductDto>> {
     return this.restService.request<void, PagedResultDto<ProductDto>>({
       method: 'GET',
-      url: '/api/app/products/filtered',
+      //url: '/api/app/products/filtered',
+      //url: '/api/product-management/products',
+      url: '/api/product-management/products',
       params: {
+        FilterText: input.filter,
         skipCount: input.skipCount,
         maxResultCount: input.maxResultCount,
-        sorting: input.sorting,
-        filter: input.filter
+        sorting: input.sorting
       }
     });
   }

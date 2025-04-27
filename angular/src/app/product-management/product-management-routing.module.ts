@@ -12,10 +12,10 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductComponent,
-    canActivate: [PermissionGuard],
-    data: {
-      requiredPolicy: 'Products.Read'
-    }
+    // canActivate: [PermissionGuard],
+    // data: {
+    //   requiredPolicy: 'Products.Read'
+    // } //kntodo
   }
 ];
 

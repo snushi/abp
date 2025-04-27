@@ -6,7 +6,8 @@ import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html'
+  templateUrl: './product.component.html',
+  "standalone": false,
 })
 export class ProductComponent implements OnInit {
   products: PagedResultDto<ProductDto> = { items: [], totalCount: 0 };
@@ -16,13 +17,20 @@ export class ProductComponent implements OnInit {
   form: any = {};
   
   filters = { filter: '' };
-  
+  currentPage = 1;
+  pageSize = 10;
+
   constructor(
     private productService: ProductService,
     private confirmation: ConfirmationService
   ) {}
 
   ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
     this.loadProducts();
   }
 
@@ -83,35 +91,3 @@ export class ProductComponent implements OnInit {
     this.loadProducts();
   }
 }
-
-// import { Component, OnInit } from '@angular/core';
-// import { ProductService } from './shared/services/product.service';
-// import { ProductDto } from './shared/models/product.model';
-// import { PagedResultDto } from '@abp/ng.core';
-// import { ConfirmationService, Confirmation } from '@abp/ng.theme.shared';
-
-// @Component({
-//   selector: 'app-product',
-//   templateUrl: './product.component.html'
-//   // No standalone property at all
-// })
-// export class ProductComponent implements OnInit {
-//   products: PagedResultDto<ProductDto> = { items: [], totalCount: 0 };
-  
-//   isModalOpen = false;
-//   selectedProduct = {} as ProductDto;
-//   form: any = {};
-  
-//   filters = { filter: '' };
-  
-//   constructor(
-//     private productService: ProductService,
-//     private confirmation: ConfirmationService
-//   ) {}
-
-//   ngOnInit(): void {
-//     this.loadProducts();
-//   }
-
-//   // Rest of the component implementation...
-// }

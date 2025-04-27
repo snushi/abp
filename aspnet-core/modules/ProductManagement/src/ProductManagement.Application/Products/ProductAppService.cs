@@ -1,17 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace ProductManagement.Products
-//{
-//    class ProductAppService
-//    {
-//    }
-//}
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -62,6 +49,10 @@ public class ProductAppService :
 
     public async Task<PagedResultDto<ProductDto>> GetListAsync(GetProductsInput input)
     {
+
+        //input.Status = ProductStatus.Active;
+        input.Sorting = null;
+
         var products = await _productRepository.GetListAsync(
             input.FilterText,
             input.Name,
