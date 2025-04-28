@@ -1,18 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace ProductManagement.Products
-//{
-//    class EfCoreProductRepository
-//    {
-//    }
-//}
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -25,14 +11,30 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace YourCompany.ProductManagement.Products;
 
-public class EfCoreProductRepository
-    : EfCoreRepository<ProductManagementDbContext, Product, Guid>,
-        IProductRepository
+public class EfCoreProductRepository : EfCoreRepository<ProductManagementDbContext, Product, Guid>, IProductRepository
 {
-    public EfCoreProductRepository(
-        IDbContextProvider<ProductManagementDbContext> dbContextProvider)
-        : base(dbContextProvider)
+    public EfCoreProductRepository(IDbContextProvider<ProductManagementDbContext> dbContextProvider) : base(dbContextProvider)
     { }
+
+    public async Task<Product?> GetAsync(Guid productId)
+    {
+        var query = await GetQueryableAsync();
+
+        var result = await query.Select(x => new Product(x.Id, x.Name, x.Description, x.Price, x.StockCount, ProductStatus.Active))
+            .Where(x => x.Id == productId).ToListAsync();
+        //.PageBy(skipCount, maxResultCount).ToListAsync();
+        //if (status == null)
+        //{
+        //    status = ProductStatus.Active;
+        //}
+
+        //int? statusValue = null;
+        //if (status != null)
+        //{
+        //    statusValue = (int)status;//ProductStatus.Active;
+        //}
+        return result.FirstOrDefault();
+    }
 
     public async Task<List<Product>> GetListAsync(
         string filterText = null,
@@ -43,6 +45,7 @@ public class EfCoreProductRepository
         string sorting = null,
         int maxResultCount = int.MaxValue,
         int skipCount = 0,
+        string? extraProperties = null,
         bool includeDetails = false)
     {
         //var query = ApplyFilter(await GetQueryableAsync(), filterText, name, minPrice, maxPrice, status);

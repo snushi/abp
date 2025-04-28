@@ -9,5 +9,13 @@ namespace ProductManagement;
 )]
 public class ProductManagementDomainModule : AbpModule
 {
+    public override void ConfigureServices(ServiceConfigurationContext context)
+    {
+        //Configure<AbpPermissionOptions>(options =>
+        //{
+        //    options.DefinitionProviders.Add<ProductPermissionDefinitionProvider>();
+        //});
 
+        // Other configurations...
+    }
 }

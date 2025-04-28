@@ -8,5 +8,7 @@ public class GetProductsInput : PagedAndSortedResultRequestDto
     public string? Name { get; set; }
     public decimal? MinPrice { get; set; }
     public decimal? MaxPrice { get; set; }
+
+    //public string? ExtraProperties { get; set; }
     public ProductStatus? Status { get; set; }
 }

@@ -9,7 +9,7 @@ namespace ProductManagement.Products;
 
 [Authorize]
 public class ProductAppService :
-    CrudAppService<
+        CrudAppService<
         Product,
         ProductDto,
         Guid,
@@ -28,6 +28,7 @@ public class ProductAppService :
 
     public override async Task<ProductDto> GetAsync(Guid id)
     {
+
         var product = await _productRepository.GetAsync(id);
         return ObjectMapper.Map<Product, ProductDto>(product);
     }
@@ -49,8 +50,6 @@ public class ProductAppService :
 
     public async Task<PagedResultDto<ProductDto>> GetListAsync(GetProductsInput input)
     {
-
-        //input.Status = ProductStatus.Active;
         input.Sorting = null;
 
         var products = await _productRepository.GetListAsync(
@@ -61,7 +60,8 @@ public class ProductAppService :
             input.Status,
             input.Sorting,
             input.MaxResultCount,
-            input.SkipCount);
+            input.SkipCount);//,
+                             //input.ExtraProperties);
 
         var totalCount = await _productRepository.GetCountAsync(
             input.FilterText,

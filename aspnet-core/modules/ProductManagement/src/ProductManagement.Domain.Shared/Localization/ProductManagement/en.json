@@ -22,6 +22,12 @@
   "culture": "en",
   "texts": {
     "MyAccount": "My account",
-    "SamplePageMessage": "A sample page for the ProductManagement module"
+    "SamplePageMessage": "A sample page for the ProductManagement module",
+    "Permission:ProductManagement": "Product Management",
+    "Permission:Products": "ProductsAaz",
+    "Permission:Products.Create": "Create ProductsAz",
+    "Permission:Products.Read": "View ProductsBz",
+    "Permission:Products.Edit": "Edit ProductsCz",
+    "Permission:Products.Delete": "Delete ProductsDz"
   }
 }

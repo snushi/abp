@@ -1,0 +1,105 @@
+<p>edit-produtc works!</p>
+<!-- edit-product.component.html -->
+<div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col col-md-6">
+          <h5 class="card-title">{{ 'Edit Product' }}</h5>
+        </div>
+        <div class="col col-md-6 text-end">
+          <button class="btn btn-secondary" (click)="cancel()">
+            <i class="fa fa-arrow-left"></i>
+            Back to List
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()" *ngIf="product">
+        <div class="mb-3">
+          <label class="form-label" for="product-name">Name</label>
+          <input
+            type="text"
+            id="product-name"
+            class="form-control"
+            formControlName="name"
+          />
+          <div *ngIf="form.get('name').invalid && form.get('name').touched" class="invalid-feedback d-block">
+            Name is required and should not exceed 128 characters.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label" for="product-description">Description</label>
+          <textarea
+            id="product-description"
+            class="form-control"
+            rows="3"
+            formControlName="description"
+          ></textarea>
+          <div *ngIf="form.get('description').invalid && form.get('description').touched" class="invalid-feedback d-block">
+            Description should not exceed 1024 characters.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label" for="product-price">Price</label>
+          <input
+            type="number"
+            id="product-price"
+            class="form-control"
+            formControlName="price"
+            min="0.01"
+            step="0.01"
+          />
+          <div *ngIf="form.get('price').invalid && form.get('price').touched" class="invalid-feedback d-block">
+            Price is required and must be greater than 0.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label" for="product-stock">Stock Count</label>
+          <input
+            type="number"
+            id="product-stock"
+            class="form-control"
+            formControlName="stockCount"
+            min="0"
+          />
+          <div *ngIf="form.get('stockCount').invalid && form.get('stockCount').touched" class="invalid-feedback d-block">
+            Stock count is required and must be 0 or greater.
+          </div>
+        </div>
+  
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            id="product-available"
+            class="form-check-input"
+            formControlName="isAvailable"
+          />
+          <label class="form-check-label" for="product-available">
+            Is Available
+          </label>
+        </div>
+  
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid || isSubmitting"
+        >
+          <i class="fa fa-save"></i>
+          Save
+        </button>
+        
+        <button
+          type="button"
+          class="btn btn-secondary ms-2"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>

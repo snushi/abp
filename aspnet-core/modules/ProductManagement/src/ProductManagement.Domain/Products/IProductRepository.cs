@@ -1,17 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace ProductManagement.Products
-//{
-//    interface IProductRepository
-//    {
-//    }
-//}
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
@@ -29,6 +16,7 @@ public interface IProductRepository : IRepository<Product, Guid>
         string sorting = null,
         int maxResultCount = int.MaxValue,
         int skipCount = 0,
+        string? extraProperties = null,
         bool includeDetails = false);
 
     Task<long> GetCountAsync(

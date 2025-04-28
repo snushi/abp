@@ -1,21 +1,8 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace ProductManagement
-//{
-//    class ProductStatus
-//    {
-//    }
-//}
-
-namespace ProductManagement.Products;
+﻿namespace ProductManagement.Products;
 
 public enum ProductStatus
 {
-    Active,
-    Inactive,
-    Discontinued
+    Active = 0,
+    Inactive = 1,
+    Discontinued = 2
 }

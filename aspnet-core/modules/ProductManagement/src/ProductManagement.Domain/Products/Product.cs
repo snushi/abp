@@ -1,17 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace ProductManagement
-//{
-//    class Product
-//    {
-//    }
-//}
-
-using System;
+﻿using System;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace ProductManagement.Products;
@@ -22,6 +9,8 @@ public class Product : AuditedAggregateRoot<Guid>
     public string Description { get; set; }
     public decimal Price { get; set; }
     public int StockCount { get; set; }
+    //public string? ExtraProperties { get; set; }
+
     public ProductStatus Status { get; set; }
 
     private Product() { }
@@ -39,6 +28,7 @@ public class Product : AuditedAggregateRoot<Guid>
         Description = description;
         Price = price;
         StockCount = stockCount;
+        //xtraProperties = extraProperties
         Status = status;
     }
 }

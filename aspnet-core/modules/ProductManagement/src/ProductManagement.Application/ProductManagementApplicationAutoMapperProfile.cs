@@ -1,17 +1,4 @@
-﻿//using AutoMapper;
-
-//namespace ProductManagement;
-
-//public class ProductManagementApplicationAutoMapperProfile : Profile
-//{
-//    public ProductManagementApplicationAutoMapperProfile()
-//    {
-//        /* You can configure your AutoMapper mapping configuration here.
-//         * Alternatively, you can split your mapping configurations
-//         * into multiple profile classes for a better organization. */
-//    }
-//}
-using AutoMapper;
+﻿using AutoMapper;
 using ProductManagement.Products;
 
 namespace ProductManagement;
@@ -23,7 +10,7 @@ public class ProductManagementApplicationAutoMapperProfile : Profile
         // Add your existing mappings...
 
         // Product mappings
-        CreateMap<Product, ProductDto>();
+        CreateMap<Product, ProductDto>().ForMember(dest => dest.ConcurrencyStamp, opt => opt.MapFrom(src => src.ConcurrencyStamp));
         CreateMap<CreateUpdateProductDto, Product>();
     }
 }
