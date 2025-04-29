@@ -12,6 +12,7 @@ import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { ProductManagementRoutingModule } from './product-management-routing.module';
 import { ProductComponent } from './products/product.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { CreateProductComponent } from './products/create-product/create-product.component';
 // import { CreateProductComponent } from './products/create-product/create-product.component';
 // import { EditProductComponent } from './products/edit-product/edit-product.component';
 // import { PermissionService } from '@abp/ng.core';
@@ -20,6 +21,7 @@ import { EditProductComponent } from './products/edit-product/edit-product.compo
   declarations: [
     ProductComponent,
     EditProductComponent,
+    CreateProductComponent,
     // CreateProductComponent,
     // EditProductComponent
   ],

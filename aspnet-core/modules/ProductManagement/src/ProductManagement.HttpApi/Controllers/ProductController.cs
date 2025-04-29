@@ -43,13 +43,15 @@ public class ProductController : ProductManagementController
     [Route("{id}")]
     public async Task<ProductDto> GetAsync(Guid id)
     {
-        return await _productAppService.GetAsync(id);
+        var result = await _productAppService.GetAsync(id);
+        return result;
     }
 
     [HttpPost]
     public async Task<ProductDto> CreateAsync(CreateUpdateProductDto input)
     {
-        return await _productAppService.CreateAsync(input);
+        var resutl = await _productAppService.CreateAsync(input);
+        return resutl;
     }
 
     [HttpPut]

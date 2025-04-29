@@ -23,7 +23,7 @@ public class CreateUpdateProductDto
 
     public DateTime LastModificationTime { get; set; }
 
-    public Guid LastModifierId { get; set; }
+    public Guid? LastModifierId { get; set; }
     public DateTime CreationTime { get; set; }
 
     public Guid CreatorId { get; set; }

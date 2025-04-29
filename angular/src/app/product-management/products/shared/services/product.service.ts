@@ -74,24 +74,24 @@ create(input: CreateUpdateProductDto): Observable<ProductDto> {
   });
 }
 
-updateORI(id: string, input: CreateUpdateProductDto): Observable<ProductDto> {
-  console.log(input);
+// updateORI(id: string, input: CreateUpdateProductDto): Observable<ProductDto> {
+//   console.log(input);
   
-  input.status = 0;
-  //input.id = id;
-  input.creationTime = new Date();
-  input.lastModificationTime = new Date();
-  input.creatorId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
-  input.lastModifierId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
-  //input.extraProperties = '{}'
-  input.concurrencyStamp = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
+//   input.status = 0;
+//   //input.id = id;
+//   input.creationTime = new Date();
+//   input.lastModificationTime = new Date();
+//   input.creatorId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
+//   input.lastModifierId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
+//   //input.extraProperties = '{}'
+//   input.concurrencyStamp = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
   
-  return this.restService.request<CreateUpdateProductDto, ProductDto>({
-    method: 'PUT',
-    url: `/api/product-management/products/${id}`,
-    body: input
-  });
-}
+//   return this.restService.request<CreateUpdateProductDto, ProductDto>({
+//     method: 'PUT',
+//     url: `/api/product-management/products/${id}`,
+//     body: input
+//   });
+// }
 
 update(id: string, input: CreateUpdateProductDto): Observable<ProductDto> {
   return this.restService.request<CreateUpdateProductDto, ProductDto>({

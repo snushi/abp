@@ -27,15 +27,13 @@
         </div>
       </div>
     </div>
-  
     <div class="card-body">
       <div class="mb-3 text-end">
-        <button class="btn btn-primary" (click)="createProduct()" *abpPermission="'ProductManagement.Products..Create'">
+        <button class="btn btn-primary" (click)="createProduct()" *abpPermission="'ProductManagement.Products.Create'">
           <i class="fa fa-plus"></i>
           Add New Product
         </button>
       </div>
-  
       <div class="table-responsive">
         <table class="table table-striped table-bordered">
           <thead>

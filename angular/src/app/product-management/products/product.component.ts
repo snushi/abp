@@ -9,7 +9,6 @@ import { AuthService } from '@abp/ng.core';
 import { Router } from '@angular/router';
 import { ConfigStateService, AbpApplicationConfigurationService } from '@abp/ng.core';
 
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',

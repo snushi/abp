@@ -48,7 +48,7 @@ export class EditProductComponent implements OnInit {
     this.productService.get(this.productId).subscribe({
       next: (product) => {
         this.product = product;
-        alert(product.description + product.concurrencyStamp)
+       // alert(product.description + product.concurrencyStamp)
         this.form.patchValue({
           name: product.name,
           description: product.description,
@@ -81,6 +81,8 @@ export class EditProductComponent implements OnInit {
 // console.log(this.product.concurrencyStamp);
 // console.log(this.product);
 
+//this.product.lastModificationTime = Date.now();
+
     const productDto: CreateUpdateProductDto = {
       name: formValues.name,
       description: formValues.description,
@@ -95,9 +97,9 @@ export class EditProductComponent implements OnInit {
       // These fields are usually managed by the server, but include them if needed
       creationTime: this.product.creationTime,
       creatorId: this.product.creatorId,
-      lastModificationTime: this.product.lastModificationTime,
+      lastModificationTime: new Date(),//this.product.lastModificationTime,
       lastModifierId: this.product.lastModifierId,
-      extraProperties: this.product.extraProperties,
+      extraProperties: "{}",//this.product.extraProperties,
     };
 
     console.log('asd');

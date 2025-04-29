@@ -10,7 +10,7 @@ export interface CreateUpdateProductDto {
     lastModifierId: string;
     creationTime: Date;
     creatorId: string;
-    extraProperties?: Record<string, any>;
+    extraProperties: string;//Record<string, any>;
     concurrencyStamp: string;
     
     
