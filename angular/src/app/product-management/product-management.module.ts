@@ -13,9 +13,7 @@ import { ProductManagementRoutingModule } from './product-management-routing.mod
 import { ProductComponent } from './products/product.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { CreateProductComponent } from './products/create-product/create-product.component';
-// import { CreateProductComponent } from './products/create-product/create-product.component';
-// import { EditProductComponent } from './products/edit-product/edit-product.component';
-// import { PermissionService } from '@abp/ng.core';
+
 
 @NgModule({
   declarations: [

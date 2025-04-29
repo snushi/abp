@@ -1,15 +1,4 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-create-product',
-//   standalone: false,
-//   templateUrl: './create-product.component.html',
-//   styleUrl: './create-product.component.scss'
-// })
-// export class CreateProductComponent {
-
-// }
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../shared/services/product.service';
 import { CreateUpdateProductDto } from '../shared/models/create-update-product.model';
@@ -21,10 +10,18 @@ import { Router } from '@angular/router';
   templateUrl: './create-product.component.html',
   "standalone": false,
 })
-export class CreateProductComponent {
-  @Output() modalClose = new EventEmitter<void>();
+
+export class CreateProductComponent implements OnInit {
+  @Output() saveCompleted = new EventEmitter<any>();
+  @Output() cancelClicked = new EventEmitter<void>();
+  
   form: FormGroup;
   isSubmitting = false;
+
+// export class CreateProductComponent {
+//   @Output() modalClose = new EventEmitter<void>();
+//   form: FormGroup;
+//   isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,24 +42,9 @@ export class CreateProductComponent {
     });
   }
 
-  // save(): void {
-  //   if (this.form.invalid) {
-  //     return;
-  //   }
-
-  //   this.isSubmitting = true;
-  //   const productDto = this.form.value as CreateUpdateProductDto;
-
-  //   this.productService.create(productDto).subscribe({
-  //     next: () => {
-  //       this.isSubmitting = false;
-  //       this.modalClose.emit();
-  //     },
-  //     error: () => {
-  //       this.isSubmitting = false;
-  //     }
-  //   });
-  // }
+  ngOnInit(): void {
+    this.buildForm();
+  }
 
   save(): void {
     if (this.form.invalid) {
@@ -74,17 +56,6 @@ export class CreateProductComponent {
     // Get the form values
     const formValues = this.form.value;
     
-    // Create the product DTO with all required fields
-    // const productDto: CreateUpdateProductDto = {
-    //   name: formValues.name,
-    //   description: formValues.description,
-    //   price: formValues.price,
-    //   stockCount: formValues.stockCount,
-    //   isAvailable: formValues.isAvailable,
-    //   status: formValues.status || 0,
-    //   extraProperties: {} // Add empty extraProperties object
-    // };
-
     const productDto: CreateUpdateProductDto = {
       name: formValues.name,
       description: formValues.description,
@@ -108,6 +79,8 @@ export class CreateProductComponent {
         console.log('Create successful:', result);
         this.toaster.success('Product created successfully');
         this.router.navigate(['/product-management/products']);
+
+        this.saveCompleted.emit(result);
       },
       error: (error) => {
         this.isSubmitting = false;
@@ -124,7 +97,7 @@ export class CreateProductComponent {
     return error.message || 'Unknown error';
   }
 
-  close(): void {
-    this.modalClose.emit();
-  }
+  // close(): void {
+  //   this.modalClose.emit();
+  // }
 }

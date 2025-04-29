@@ -8,6 +8,8 @@ import { PermissionDirective } from '@abp/ng.core';
 import { AuthService } from '@abp/ng.core';
 import { Router } from '@angular/router';
 import { ConfigStateService, AbpApplicationConfigurationService } from '@abp/ng.core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateProductComponent } from '../products/create-product/create-product.component';
 
 @Component({
   selector: 'app-product',
@@ -37,12 +39,16 @@ export class ProductComponent implements OnInit {
     private authService: AuthService,
     private configState: ConfigStateService,
     private applicationConfigurationService: AbpApplicationConfigurationService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
     //private permissionStore: PermissionStore
   ) {}
 
   ngOnInit(): void {
  // Debug: Check the entire configuration
+
+ this.getProductList();
+
  const config = this.configState.getAll();
  console.log('Full config:', config);
  
@@ -61,10 +67,6 @@ export class ProductComponent implements OnInit {
  this.hasDeletePermission = this.permissionService.getGrantedPolicy('ProductManagement.Products.Delete');
  this.hasUpdatePermission = this.permissionService.getGrantedPolicy('ProductManagement.Products.Update');
  // this.hasUpdatePermission = this.permissionService.getGrantedPolicy('ProductManagement.Products.Edit');
-
-    // this.hasDeletePermission = this.permissionService.getGrantedPolicy('Products.Delete');
-    // this.hasUpdatePermission = this.permissionService.getGrantedPolicy('Products.Update');
-//    alert('Delete: ' + this.hasDeletePermission + ' Update: ' +  this.hasUpdatePermission);
 
     this.loadProducts();
   }
@@ -99,25 +101,48 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  // createProduct() {
+  //   const modalRef = this.modalService.open(CreateProductComponent);
+    
+  //   modalRef.componentInstance.saveCompleted.subscribe(result => {
+  //     modalRef.close();
+  //     this.getProductList();
+  //   });
+  
+  //   modalRef.componentInstance.cancelClicked.subscribe(() => {
+  //     modalRef.close();
+  //   });
+  // }
+
   createProduct(): void {
-    this.selectedProduct = {} as ProductDto;
-    this.isModalOpen = true;
+    const modalRef = this.modalService.open(CreateProductComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    
+    // Subscribe to the events from the modal component
+    modalRef.componentInstance.saveCompleted.subscribe(result => {
+      modalRef.close();
+      // Refresh your product list using your existing method
+      this.getProductList();
+    });
+
+    modalRef.componentInstance.cancelClicked.subscribe(() => {
+      modalRef.close();
+    });
   }
 
-  // editProduct(product: ProductDto): void {
-  //   this.selectedProduct = product;
-  //   this.isModalOpen = true;
-  // }
+  getProductList(): void {
+    // Use your existing method to load products
+    this.loadProducts();
+    // Or if you have a different method to load products, use that instead
+  }
 
   editProduct(product: ProductDto): void {
     this.router.navigate(['/product-management/products/edit', product.id]);
     //this.router.navigate(['/product-management/products/edit-product', product.id]);
     //this.router.navigate(['/product-management/products']);
   }
-
-  // editProduct(product: ProductDto): void {
-  //   this.router.navigate(['/product-management/products/edit', product.id]);
-  // }
 
   deleteProduct(product: ProductDto): void {
     this.confirmation.warn(
@@ -129,14 +154,6 @@ export class ProductComponent implements OnInit {
       }
     });
   }
-
-  // deleteProduct(product: ProductDto): void {
-  //   this.confirmation.warn(
-  //     'Product deletion',
-  //     `Are you sure you want to delete the product ${product.name}?`,
-  //     { isConfirmed: () => this.confirmDeleteProduct(product.id) }
-  //   );
-  // }
 
   confirmDeleteProduct(id: string): void {
     this.productService.delete(id).subscribe(() => {
